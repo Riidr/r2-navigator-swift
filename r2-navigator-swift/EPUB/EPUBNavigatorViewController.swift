@@ -331,15 +331,15 @@ open class EPUBNavigatorViewController: UIViewController, VisualNavigator, Logga
 
 extension EPUBNavigatorViewController: EPUBSpreadViewDelegate {
     
-    func spreadViewWillAnimate(_ spreadView: EPUBSpreadView) {
+    @objc func spreadViewWillAnimate(_ spreadView: EPUBSpreadView) {
         paginationView.isUserInteractionEnabled = false
     }
     
-    func spreadViewDidAnimate(_ spreadView: EPUBSpreadView) {
+    @objc func spreadViewDidAnimate(_ spreadView: EPUBSpreadView) {
         paginationView.isUserInteractionEnabled = true
     }
     
-    func spreadView(_ spreadView: EPUBSpreadView, didTapAt point: CGPoint) {
+    @objc func spreadView(_ spreadView: EPUBSpreadView, didTapAt point: CGPoint) {
         let point = view.convert(point, from: spreadView)
         delegate?.navigator(self, didTapAt: point)
         // FIXME: Deprecated, to be removed at some point.
@@ -359,21 +359,21 @@ extension EPUBNavigatorViewController: EPUBSpreadViewDelegate {
 //        }
     }
     
-    func spreadView(_ spreadView: EPUBSpreadView, didTapOnExternalURL url: URL) {
+    @objc func spreadView(_ spreadView: EPUBSpreadView, didTapOnExternalURL url: URL) {
         delegate?.navigator(self, presentExternalURL: url)
     }
     
-    func spreadView(_ spreadView: EPUBSpreadView, didTapOnInternalLink href: String) {
+    @objc func spreadView(_ spreadView: EPUBSpreadView, didTapOnInternalLink href: String) {
         go(to: Link(href: href))
     }
     
-    func spreadViewPagesDidChange(_ spreadView: EPUBSpreadView) {
+    @objc func spreadViewPagesDidChange(_ spreadView: EPUBSpreadView) {
         if paginationView.currentView == spreadView {
             notifyCurrentLocation()
         }
     }
     
-    func spreadView(_ spreadView: EPUBSpreadView, present viewController: UIViewController) {
+    @objc func spreadView(_ spreadView: EPUBSpreadView, present viewController: UIViewController) {
         present(viewController, animated: true)
     }
 
@@ -410,7 +410,7 @@ extension EPUBNavigatorViewController: PaginationViewDelegate {
         return spreadView
     }
     
-    func paginationViewDidUpdateViews(_ paginationView: PaginationView) {
+    @objc func paginationViewDidUpdateViews(_ paginationView: PaginationView) {
         // notice that you should set the delegate before you load views
         // otherwise, when open the publication, you may miss the first invocation
         notifyCurrentLocation()

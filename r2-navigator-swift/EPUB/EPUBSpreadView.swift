@@ -67,7 +67,7 @@ class EPUBSpreadView: UIView, Loggable {
         return userEnabled || UIAccessibility.isVoiceOverRunning
     }
 
-    private(set) var spreadLoaded = false
+    @objc dynamic private(set) var spreadLoaded = false
 
     required init(publication: Publication, spread: EPUBSpread, resourcesURL: URL?, initialLocation: Locator, contentLayout: ContentLayoutStyle, readingProgression: ReadingProgression, userSettings: UserSettings, animatedLoad: Bool = false, editingActions: EditingActionsController, contentInset: [UIUserInterfaceSizeClass: EPUBContentInsets]) {
         self.publication = publication
@@ -325,7 +325,8 @@ class EPUBSpreadView: UIView, Loggable {
     func makeScripts() -> [WKUserScript] {
         return [
             WKUserScript(source: EPUBSpreadView.gesturesScript, injectionTime: .atDocumentStart, forMainFrameOnly: false),
-            WKUserScript(source: EPUBSpreadView.utilsScript, injectionTime: .atDocumentStart, forMainFrameOnly: false)
+            WKUserScript(source: EPUBSpreadView.utilsScript, injectionTime: .atDocumentStart, forMainFrameOnly: false),
+            WKUserScript(source: EPUBSpreadView.loadScript(named: "custom"), injectionTime: .atDocumentEnd, forMainFrameOnly: false) // Custom
         ]
     }
     
