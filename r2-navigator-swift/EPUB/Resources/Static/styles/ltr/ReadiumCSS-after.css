@@ -66,7 +66,7 @@
   --RS__colGap: 0;
 
   /* Optimal line-length (rem will take :root font-size into account, whatever the body’s font-size) */
-  --RS__maxLineLength: 40rem;
+  --RS__maxLineLength: 80rem;
 
   /* Default page horizontal margins (in pixels so that it won’t resize with font-size) */
   --RS__pageGutter: 20px; /* See if colGap and pageGutter can be the same var */
@@ -183,7 +183,7 @@ body {
     --RS__colWidth: 20em; /* 20 * 16 = 320px but 20 * 28 = 560px so it will switch to 1 col @ 175% font-size (user-setting) on an iPad */
     /* We constrain to 2 columns so that we can never get 3 or 4, etc. */
     --RS__colCount: 2;
-    --RS__maxLineLength: 39.99rem; /* If we don’t use this, colNumber user setting won’t work in Safari… */
+    --RS__maxLineLength: 79.99rem; /* If we don’t use this, colNumber user setting won’t work in Safari… */
   }
 }
 
@@ -213,7 +213,7 @@ body {
 /* Make sure line-length is limited in all configs */
 
 :root[style*="readium-scroll-on"] body {
-  --RS__maxLineLength: 40rem !important; 
+  --RS__maxLineLength: 80rem !important;
 
   margin-top: var(--RS__pageGutter) !important;
   margin-bottom: var(--RS__pageGutter) !important;
@@ -350,7 +350,7 @@ body {
   --RS__selectionBackgroundColor: #b4d8fe;
   --RS__selectionTextColor: inherit;
 
-  --RS__maxLineLength: 40.01rem; /* Forcing a reflow in Blink/Webkit so that blend mode can work */
+  --RS__maxLineLength: 80.01rem; /* Forcing a reflow in Blink/Webkit so that blend mode can work */
 }
 
 /* we don’t need to redeclare bg-color and color for :root since we will inherit and update from day/default mode */
@@ -483,7 +483,7 @@ body {
   /* If one column, make sure we limit line-length */
   :root[style*="--USER__colCount: 1"],
   :root[style*="--USER__colCount:1"] {
-    --RS__maxLineLength: 40rem !important; /* This is the only way for the user setting to work in webkit… */
+    --RS__maxLineLength: 80rem !important; /* This is the only way for the user setting to work in webkit… */
     --RS__colWidth: 100vw;
   }
 
